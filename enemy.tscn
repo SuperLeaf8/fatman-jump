@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cj4b83vrsipu"]
+
+[ext_resource type="Script" uid="uid://l4wnajv6sao7" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://n1silwlwifnr" path="res://spritesheets/carrot.png" id="1_7k104"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(42, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
+atlas = ExtResource("1_7k104")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("1_7k104")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("1_7k104")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gyqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi2p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=644084423]
+collision_layer = 4
+script = ExtResource("1_4gyqm")
+speed = 30.0
+gravity = 350
+max_distance = 80
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=332016664]
+position = Vector2(5, -2)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=149476964]
+texture_filter = 1
+scale = Vector2(3.6249998, 3.6249998)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"walk"
+
+[node name="Timer" type="Timer" parent="." unique_id=1421380256]
+wait_time = 0.766
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
