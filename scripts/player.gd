@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export
 var gravity: int
 @export
@@ -9,6 +8,8 @@ var jump_power: int
 var acceleration: int
 @export
 var max_speed: int
+
+signal update_hud(score)
 
 var animation: AnimatedSprite2D
 func _ready():
@@ -44,7 +45,7 @@ func _physics_process(delta: float) -> void:
 			animation.frame = 1
 		elif velocity.y < -50:
 			animation.frame = 0
-		animation.frame_progress = 0.0
+		animation.frame_progress = 0.0 # do not play the animation, just use frames
 	
 	
 	velocity.y += gravity * delta # gravity
@@ -54,9 +55,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "Enemy":
+	if body is Enemy:
 		if velocity.y > 20: # if player is falling...
 			body.queue_free() # kill enemy and
 			velocity.y = -100  # bounce
+			update_hud.emit(1) # and give a score of 1 for the HUD
 		else:
-			pass # take damage, later technique
+			pass # enemy kills us

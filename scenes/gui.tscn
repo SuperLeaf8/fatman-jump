@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bkdt3ukovw2jv"]
+
+[ext_resource type="Script" uid="uid://cgwrf16od0h8k" path="res://scripts/gui.gd" id="1_efmwq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5hph3"]
+line_spacing = 3.04
+font_size = 42
+
+[node name="GUI" type="CanvasLayer" unique_id=945344476]
+script = ExtResource("1_efmwq")
+
+[node name="Label" type="Label" parent="." unique_id=678568895]
+offset_left = 60.0
+offset_top = 55.0
+offset_right = 108.0
+offset_bottom = 78.0
+text = "Score:"
+label_settings = SubResource("LabelSettings_5hph3")

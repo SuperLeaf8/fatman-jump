@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 @export
 var speed: float
@@ -29,15 +30,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 	
-	if velocity.x and is_on_floor(): # sprite stuff, just like player
+	if velocity.x and is_on_floor(): # play walk animation if moving on ground
 		animation.play()
 		if velocity.x > 0:
 			animation.flip_h = false
 		else:
 			animation.flip_h = true
-	elif is_on_floor():
+	elif is_on_floor(): # standing still
 		animation.set_frame_and_progress(0, 0.0)
-	else:
+	else: # falling, whether moving or not
 		animation.set_frame_and_progress(3, 0.0)
 	
 	velocity.y += gravity * delta # gravity
@@ -46,6 +47,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_timer_timeout() -> void: # idle time is over, start walking
 	distance = rng.randi_range(-max_distance, max_distance) # rng the distance to walk
-	walk_time = distance/speed
+	walk_time = abs(distance/speed)
 	time_elapsed = 0
+	timer.wait_time = rng.randf_range(0.8, 4.0)
 	walking = true
