@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://eru6xxtld63b"]
 
 [ext_resource type="Texture2D" uid="uid://15ks411fbppo" path="res://spritesheets/fatmanidle.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://dxbsguycvor2r" path="res://player.gd" id="1_hqtel"]
+[ext_resource type="Script" uid="uid://dxbsguycvor2r" path="res://scripts/player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dtgtpxgjop47g" path="res://spritesheets/fatmanjump.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://bxscg5vc25t66" path="res://spritesheets/fatmanrun.png" id="3_hqtel"]
 
